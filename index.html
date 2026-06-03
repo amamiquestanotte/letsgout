@@ -20,21 +20,20 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
-    color:white;
 }
 
-/* CENTRO */
+/* BLOCCO CENTRALE */
 .container{
     display:flex;
     flex-direction:column;
     align-items:center;
     text-align:center;
+    color:white;
 }
 
 /* TESTO */
 h1{
-    font-size:3.2rem;
+    font-size:3rem;
     margin-bottom:20px;
     text-transform: lowercase;
     text-shadow:0 0 10px #5aa7ff;
@@ -42,43 +41,39 @@ h1{
 
 /* GATTO */
 img{
-    width:180px;
+    width:170px;
     margin-bottom:20px;
 }
 
-/* BOTTONI PERFETTAMENTE ALLINEATI */
+/* BOTTONI PERFETTI */
 .buttons{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap:20px;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
     align-items:center;
-    justify-items:center;
-    margin-top:10px;
+    gap:20px;
     position:relative;
-    width:260px;
 }
 
-/* BOX */
+/* BOX NORMALI (IMPORTANTISSIMO: NO width 100%) */
 .box{
     background:white;
     color:#0b2a55;
-    padding:15px 35px;
+    padding:12px 30px;
     border-radius:12px;
-    font-size:1.3rem;
+    font-size:1.1rem;
     font-weight:bold;
     cursor:pointer;
     box-shadow:0 0 10px #5aa7ff;
     user-select:none;
-    width:100%;
-    text-align:center;
+    transition:0.2s;
 }
 
-/* SI normale */
-#si{
-    position:relative;
+.box:hover{
+    transform:scale(1.05);
 }
 
-/* NO fuori dal flow ma non rompe layout */
+/* NO libero ma NON influisce layout */
 #no{
     position:fixed;
 }
