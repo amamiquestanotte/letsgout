@@ -20,10 +20,9 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
 }
 
-/* BLOCCO CENTRALE */
+/* CONTENUTO CENTRATO */
 .container{
     display:flex;
     flex-direction:column;
@@ -37,6 +36,7 @@ h1{
     font-size:3.2rem;
     margin-bottom:20px;
     text-transform: lowercase;
+    color:white;
     text-shadow:0 0 10px #5aa7ff;
 }
 
@@ -46,13 +46,13 @@ img{
     margin-bottom:20px;
 }
 
-/* BOTTONI CENTRATI E AFFIANCATI */
+/* BOTTONI PERFETTAMENTE AFFIANCATI */
 .buttons{
     display:flex;
     gap:20px;
     justify-content:center;
     align-items:center;
-    margin-top:10px;
+    position:relative;
 }
 
 /* BOX */
@@ -68,11 +68,9 @@ img{
     user-select:none;
 }
 
-/* NO che scappa */
+/* NO NON fixed (IMPORTANTISSIMO) */
 #no{
-    position:fixed;
-    left:60%;
-    top:60%;
+    position:relative;
 }
 
 /* STELLE */
@@ -124,28 +122,25 @@ function yes(){
     alert("💙 grazie 💙");
 }
 
-/* NO che scappa ma resta visibile */
+/* NO CHE SCAPPA MA RESTA SEMPRE VICINO */
 const noBtn = document.getElementById("no");
 
-document.addEventListener("mousemove", function(e){
+noBtn.addEventListener("mouseenter", function(){
 
-    const rect = noBtn.getBoundingClientRect();
+    const container = document.querySelector(".buttons");
 
-    const dist = Math.hypot(
-        e.clientX - (rect.left + rect.width/2),
-        e.clientY - (rect.top + rect.height/2)
-    );
+    const rect = container.getBoundingClientRect();
 
-    if(dist < 120){
+    const maxX = window.innerWidth - 120;
+    const maxY = window.innerHeight - 60;
 
-        const maxX = window.innerWidth - 120;
-        const maxY = window.innerHeight - 60;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
 
-        noBtn.style.left = Math.random()*maxX + "px";
-        noBtn.style.top = Math.random()*maxY + "px";
-    }
+    noBtn.style.position = "fixed";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
 });
-
 </script>
 
 </body>
