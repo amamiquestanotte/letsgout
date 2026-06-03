@@ -22,11 +22,12 @@ body{
     align-items:center;
 }
 
-/* BLOCCO CENTRALE */
+/* CONTENUTO CENTRALE */
 .container{
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content:center;
     text-align:center;
     color:white;
 }
@@ -45,7 +46,7 @@ img{
     margin-bottom:20px;
 }
 
-/* BOTTONI PERFETTI */
+/* BOTTONI: LA SOLUZIONE DEFINITIVA */
 .buttons{
     display:flex;
     flex-direction:row;
@@ -55,11 +56,11 @@ img{
     position:relative;
 }
 
-/* BOX NORMALI (IMPORTANTISSIMO: NO width 100%) */
+/* BOX */
 .box{
     background:white;
     color:#0b2a55;
-    padding:12px 30px;
+    padding:12px 28px;
     border-radius:12px;
     font-size:1.1rem;
     font-weight:bold;
@@ -67,15 +68,16 @@ img{
     box-shadow:0 0 10px #5aa7ff;
     user-select:none;
     transition:0.2s;
+    position:relative;
 }
 
 .box:hover{
     transform:scale(1.05);
 }
 
-/* NO libero ma NON influisce layout */
+/* NO NON deve mai uscire dal flow */
 #no{
-    position:fixed;
+    position:relative;
 }
 
 /* STELLE */
@@ -127,7 +129,7 @@ function yes(){
     alert("💙 grazie 💙");
 }
 
-/* NO che scappa senza rompere layout */
+/* NO CHE SCAPPA SENZA ROMPERE LAYOUT */
 const noBtn = document.getElementById("no");
 
 document.addEventListener("mousemove", function(e){
@@ -146,6 +148,7 @@ document.addEventListener("mousemove", function(e){
         const maxX = window.innerWidth - padding;
         const maxY = window.innerHeight - padding;
 
+        noBtn.style.position = "fixed";
         noBtn.style.left = Math.random()*maxX + "px";
         noBtn.style.top = Math.random()*maxY + "px";
     }
