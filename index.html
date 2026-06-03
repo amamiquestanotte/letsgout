@@ -3,109 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Il Nostro Sito</title>
+<title>Ti va di uscire?</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
+    margin:0;
     overflow:hidden;
-    font-family: 'Georgia', serif;
+    font-family: Georgia, serif;
 }
 
+/* SFONDO */
 .hero{
-    position:relative;
     width:100vw;
     height:100vh;
-    background: linear-gradient(
-        to bottom,
-        #021024,
-        #052659,
-        #1b3c73
-    );
+    background: linear-gradient(to bottom, #020b1a, #061a3a, #0b2a55);
     display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
+    position:relative;
     text-align:center;
     color:white;
 }
 
-.content{
-    z-index:10;
-    padding:20px;
-}
-
+/* TESTO */
 h1{
-    font-size:4rem;
-    margin-bottom:15px;
-    text-shadow:0 0 15px rgba(255,255,255,.4);
+    font-size:3rem;
+    margin-bottom:20px;
 }
 
-p{
-    font-size:1.3rem;
-    margin-bottom:30px;
+/* GATTO */
+img{
+    width:180px;
+    margin-bottom:25px;
+    border-radius:15px;
 }
 
-button{
+/* BOTTONI */
+.buttons{
+    display:flex;
+    gap:20px;
+    position:relative;
+    z-index:10;
+}
+
+.box{
     background:white;
-    color:#052659;
-    border:none;
-    padding:15px 35px;
-    border-radius:30px;
-    font-size:1rem;
+    color:#0b2a55;
+    padding:15px 40px;
+    border-radius:12px;
+    font-size:1.2rem;
     cursor:pointer;
-    transition:.3s;
+    font-weight:bold;
+    transition:0.2s;
 }
 
-button:hover{
+.box:hover{
     transform:scale(1.05);
 }
 
-/* Stelle */
+/* NO che scappa */
+#no{
+    position:absolute;
+}
 
+/* STELLE */
 .star{
     position:absolute;
-    background:white;
+    background:yellow;
     border-radius:50%;
     animation:twinkle 3s infinite;
+    box-shadow: 0 0 6px yellow;
 }
 
 @keyframes twinkle{
-    0%,100%{
-        opacity:0.2;
-        transform:scale(1);
-    }
-    50%{
-        opacity:1;
-        transform:scale(1.5);
-    }
+    0%,100%{opacity:0.3; transform:scale(1);}
+    50%{opacity:1; transform:scale(1.8);}
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
+<div class="hero">
 
-<div class="content">
-    <h1>Rebecca & ...</h1>
-    <p>Ogni stella racconta una storia.</p>
-    <button>Scopri di più</button>
+    <h1>Ti va di uscire?</h1>
+
+    <!-- GATTO (gif carina) -->
+    <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="gatto">
+
+    <div class="buttons">
+        <div class="box" onclick="yes()">Sì</div>
+        <div class="box" id="no">No</div>
+    </div>
+
 </div>
 
-</section>
-
 <script>
-for(let i=0;i<120;i++){
 
+// STELLE GIALLE
+for(let i=0;i<150;i++){
     const star=document.createElement('div');
     star.classList.add('star');
 
-    const size=Math.random()*4+1;
+    const size=Math.random()*3+1;
 
     star.style.width=size+'px';
     star.style.height=size+'px';
@@ -117,6 +118,30 @@ for(let i=0;i<120;i++){
 
     document.querySelector('.hero').appendChild(star);
 }
+
+// BOTTONI
+function yes(){
+    alert("💙 perfetto 💙");
+}
+
+// NO CHE SCAPPA
+const noBtn = document.getElementById("no");
+
+document.addEventListener("mousemove", function(e){
+
+    const x = noBtn.getBoundingClientRect();
+
+    const dist = Math.hypot(e.clientX - (x.left+x.width/2), e.clientY - (x.top+x.height/2));
+
+    if(dist < 80){
+        const maxX = window.innerWidth - 100;
+        const maxY = window.innerHeight - 50;
+
+        noBtn.style.left = Math.random()*maxX + "px";
+        noBtn.style.top = Math.random()*maxY + "px";
+    }
+});
+
 </script>
 
 </body>
