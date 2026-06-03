@@ -20,6 +20,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    position:relative;
 }
 
 /* CONTENUTO CENTRATO */
@@ -29,6 +30,7 @@ body{
     align-items:center;
     justify-content:center;
     text-align:center;
+    color:white;
 }
 
 /* TESTO */
@@ -36,7 +38,6 @@ h1{
     font-size:3.2rem;
     margin-bottom:20px;
     text-transform: lowercase;
-    color:white;
     text-shadow:0 0 10px #5aa7ff;
 }
 
@@ -46,20 +47,22 @@ img{
     margin-bottom:20px;
 }
 
-/* BOTTONI PERFETTAMENTE AFFIANCATI */
+/* BOTTONI */
 .buttons{
+    position:relative;
+    width:260px;
+    height:70px;
     display:flex;
-    gap:20px;
     justify-content:center;
     align-items:center;
-    position:relative;
+    gap:20px;
 }
 
 /* BOX */
 .box{
     background:white;
     color:#0b2a55;
-    padding:15px 45px;
+    padding:15px 40px;
     border-radius:12px;
     font-size:1.3rem;
     font-weight:bold;
@@ -68,9 +71,16 @@ img{
     user-select:none;
 }
 
-/* NO NON fixed (IMPORTANTISSIMO) */
-#no{
+/* SI stabile */
+#si{
     position:relative;
+}
+
+/* NO libero ma indipendente dal layout */
+#no{
+    position:fixed;
+    left:calc(50% + 90px);
+    top:calc(50% + 120px);
 }
 
 /* STELLE */
@@ -96,7 +106,7 @@ img{
         <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTQwN2Fmc2pxeDNpcjNsM2Z3bGJuZ20yMzI4bXAxNXpna2d2MHJoYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ncn7y0xz7ZfAxEcEml/giphy.gif">
 
         <div class="buttons">
-            <div class="box" onclick="yes()">si</div>
+            <div class="box" id="si" onclick="yes()">si</div>
             <div class="box" id="no">no</div>
         </div>
 
@@ -122,25 +132,30 @@ function yes(){
     alert("💙 grazie 💙");
 }
 
-/* NO CHE SCAPPA MA RESTA SEMPRE VICINO */
+/* NO che scappa senza spostare layout */
 const noBtn = document.getElementById("no");
 
-noBtn.addEventListener("mouseenter", function(){
+document.addEventListener("mousemove", function(e){
 
-    const container = document.querySelector(".buttons");
+    const rect = noBtn.getBoundingClientRect();
 
-    const rect = container.getBoundingClientRect();
+    const dist = Math.hypot(
+        e.clientX - (rect.left + rect.width/2),
+        e.clientY - (rect.top + rect.height/2)
+    );
 
-    const maxX = window.innerWidth - 120;
-    const maxY = window.innerHeight - 60;
+    if(dist < 120){
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+        const padding = 120;
 
-    noBtn.style.position = "fixed";
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+        const maxX = window.innerWidth - padding;
+        const maxY = window.innerHeight - padding;
+
+        noBtn.style.left = Math.random()*maxX + "px";
+        noBtn.style.top = Math.random()*maxY + "px";
+    }
 });
+
 </script>
 
 </body>
