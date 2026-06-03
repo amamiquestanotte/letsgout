@@ -18,59 +18,60 @@ body{
     height:100vh;
     background: linear-gradient(to bottom, #020b1a, #061a3a, #0b2a55);
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
-    position:relative;
+    flex-direction:column;
     text-align:center;
+    position:relative;
     color:white;
 }
 
-/* TESTO */
+/* TESTO NEON */
 h1{
-    font-size:3rem;
-    margin-bottom:20px;
-    text-transform: lowercase;
-}
-
-/* GATTO */
-img{
-    width:180px;
+    font-size:3.2rem;
     margin-bottom:25px;
-    border-radius:15px;
+    text-transform: lowercase;
+    color:#fff;
+    text-shadow:
+        0 0 5px #7db7ff,
+        0 0 10px #5aa7ff,
+        0 0 20px #3f8cff,
+        0 0 40px #2f6fff;
 }
 
 /* BOTTONI */
-.box{
-    background:white;
-    color:#0b2a55;
-    padding:15px 40px;
-    border-radius:12px;
-    font-size:1.2rem;
-    cursor:pointer;
-    font-weight:bold;
-    transition:0.2s;
-    position:relative;
-}
-
-.box:hover{
-    transform:scale(1.05);
-}
-
 .buttons{
     display:flex;
     gap:20px;
-    z-index:10;
+    position:relative;
+    margin-top:10px;
 }
 
-/* NO che scappa */
+/* BOX NEON */
+.box{
+    background:white;
+    color:#0b2a55;
+    padding:15px 45px;
+    border-radius:12px;
+    font-size:1.3rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.2s;
+    box-shadow:
+        0 0 8px #7db7ff,
+        0 0 15px #5aa7ff;
+}
+
+.box:hover{
+    transform:scale(1.08);
+}
+
+/* NO iniziale */
 #no{
-    position:absolute;
-    left:60%;
-    top:70%;
+    position:relative;
 }
 
-/* STELLE */
+/* STELLE GIALLE */
 .star{
     position:absolute;
     background:yellow;
@@ -92,9 +93,6 @@ img{
 
     <h1>ti va di uscire?</h1>
 
-    <!-- GATTO SUPPLICANTE -->
-    <img src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" alt="gattino supplicante">
-
     <div class="buttons">
         <div class="box" onclick="yes()">si</div>
         <div class="box" id="no">no</div>
@@ -104,7 +102,7 @@ img{
 
 <script>
 
-// STELLE
+/* STELLE */
 for(let i=0;i<150;i++){
     const star=document.createElement('div');
     star.classList.add('star');
@@ -122,30 +120,23 @@ for(let i=0;i<150;i++){
     document.querySelector('.hero').appendChild(star);
 }
 
-// SI
+/* SI */
 function yes(){
     alert("💙 grazie 💙");
 }
 
-// NO CHE SI MUOVE SEMPRE (non sparisce mai)
+/* NO CHE SCAPPA SOLO QUANDO CI PASSI SOPRA */
 const noBtn = document.getElementById("no");
 
-document.addEventListener("mousemove", function(e){
+noBtn.addEventListener("mouseenter", function(){
 
-    const rect = noBtn.getBoundingClientRect();
+    const maxX = window.innerWidth - 120;
+    const maxY = window.innerHeight - 60;
 
-    const dist = Math.hypot(
-        e.clientX - (rect.left + rect.width/2),
-        e.clientY - (rect.top + rect.height/2)
-    );
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random()*maxX + "px";
+    noBtn.style.top = Math.random()*maxY + "px";
 
-    if(dist < 100){
-        const maxX = window.innerWidth - 120;
-        const maxY = window.innerHeight - 60;
-
-        noBtn.style.left = Math.random()*maxX + "px";
-        noBtn.style.top = Math.random()*maxY + "px";
-    }
 });
 </script>
 
