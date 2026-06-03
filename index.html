@@ -31,7 +31,6 @@ h1{
     font-size:3.2rem;
     margin-bottom:20px;
     text-transform: lowercase;
-    color:white;
     text-shadow:
         0 0 5px #7db7ff,
         0 0 10px #5aa7ff,
@@ -45,10 +44,14 @@ img{
     margin-bottom:20px;
 }
 
-/* BOTTONI SEMPRE AFFIANCATI */
+/* CONTENITORE BOTTONI (FIX PRINCIPALE) */
 .buttons{
     display:flex;
+    flex-direction:row;
     gap:20px;
+    justify-content:center;
+    align-items:center;
+    position:relative;
 }
 
 /* BOX */
@@ -64,15 +67,18 @@ img{
     box-shadow:
         0 0 8px #7db7ff,
         0 0 15px #5aa7ff;
+    user-select:none;
 }
 
 .box:hover{
     transform:scale(1.08);
 }
 
-/* NO controllato */
+/* NO (fuori dal flow ma NON rompe layout) */
 #no{
-    position:absolute;
+    position:fixed;
+    left:55%;
+    top:65%;
 }
 
 /* STELLE */
@@ -97,13 +103,13 @@ img{
 
     <h1>ti va di uscire?</h1>
 
-    <!-- TUA GIF -->
-    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTQwN2Fmc2pxeDNpcjNsM2Z3bGJuZ20yMzI4bXAxNXpna2d2MHJoYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ncn7y0xz7ZfAxEcEml/giphy.gif" alt="gatto">
+    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTQwN2Fmc2pxeDNpcjNsM2Z3bGJuZ20yMzI4bXAxNXpna2d2MHJoYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ncn7y0xz7ZfAxEcEml/giphy.gif">
 
     <div class="buttons">
         <div class="box" onclick="yes()">si</div>
-        <div class="box" id="no">no</div>
     </div>
+
+    <div class="box" id="no">no</div>
 
 </div>
 
@@ -132,12 +138,12 @@ function yes(){
     alert("💙 grazie 💙");
 }
 
-/* NO CHE NON ESCE MAI DALLO SCHERMO */
+/* NO che NON ESCE MAI DALLO SCHERMO */
 const noBtn = document.getElementById("no");
 
 noBtn.addEventListener("mouseenter", function(){
 
-    const padding = 80;
+    const padding = 100;
 
     const maxX = window.innerWidth - padding;
     const maxY = window.innerHeight - padding;
