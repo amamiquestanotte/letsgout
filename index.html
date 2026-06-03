@@ -20,12 +20,12 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    flex-direction:column;
     text-align:center;
     color:white;
-    position:relative;
 }
 
-/* BLOCCO CENTRALE (FIX PRINCIPALE) */
+/* BLOCCO CENTRALE */
 .container{
     display:flex;
     flex-direction:column;
@@ -41,127 +41,3 @@ h1{
     text-transform: lowercase;
     text-shadow:
         0 0 5px #7db7ff,
-        0 0 10px #5aa7ff,
-        0 0 20px #3f8cff,
-        0 0 40px #2f6fff;
-}
-
-/* GATTO */
-img{
-    width:180px;
-}
-
-/* BOTTONI PERFETTAMENTE ALLINEATI */
-.buttons{
-    display:flex;
-    flex-direction:row;
-    gap:20px;
-    align-items:center;
-    justify-content:center;
-}
-
-/* BOX */
-.box{
-    background:white;
-    color:#0b2a55;
-    padding:15px 45px;
-    border-radius:12px;
-    font-size:1.3rem;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.2s;
-    box-shadow:
-        0 0 8px #7db7ff,
-        0 0 15px #5aa7ff;
-    user-select:none;
-}
-
-.box:hover{
-    transform:scale(1.08);
-}
-
-/* NO mobile floating */
-#no{
-    position:fixed;
-}
-
-/* STELLE */
-.star{
-    position:absolute;
-    background:yellow;
-    border-radius:50%;
-    animation:twinkle 3s infinite;
-    box-shadow:0 0 6px yellow;
-}
-
-@keyframes twinkle{
-    0%,100%{opacity:0.3; transform:scale(1);}
-    50%{opacity:1; transform:scale(1.8);}
-}
-</style>
-</head>
-
-<body>
-
-<div class="hero">
-
-    <div class="container">
-
-        <h1>ti va di uscire?</h1>
-
-        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTQwN2Fmc2pxeDNpcjNsM2Z3bGJuZ20yMzI4bXAxNXpna2d2MHJoYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ncn7y0xz7ZfAxEcEml/giphy.gif">
-
-        <div class="buttons">
-            <div class="box" onclick="yes()">si</div>
-            <div class="box" id="no">no</div>
-        </div>
-
-    </div>
-
-</div>
-
-<script>
-
-/* STELLE */
-for(let i=0;i<150;i++){
-    const star=document.createElement('div');
-    star.classList.add('star');
-
-    const size=Math.random()*3+1;
-
-    star.style.width=size+'px';
-    star.style.height=size+'px';
-
-    star.style.left=Math.random()*100+'%';
-    star.style.top=Math.random()*100+'%';
-
-    star.style.animationDelay=Math.random()*3+'s';
-
-    document.querySelector('.hero').appendChild(star);
-}
-
-/* SI */
-function yes(){
-    alert("💙 grazie 💙");
-}
-
-/* NO che scappa ma resta visibile */
-const noBtn = document.getElementById("no");
-
-noBtn.addEventListener("mouseenter", function(){
-
-    const padding = 120;
-
-    const maxX = window.innerWidth - padding;
-    const maxY = window.innerHeight - padding;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-});
-</script>
-
-</body>
-</html>
