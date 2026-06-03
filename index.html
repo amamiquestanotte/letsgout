@@ -29,12 +29,134 @@ body{
 /* TESTO NEON */
 h1{
     font-size:3.2rem;
-    margin-bottom:25px;
+    margin-bottom:20px;
     text-transform: lowercase;
-    color:#fff;
+    color:white;
     text-shadow:
         0 0 5px #7db7ff,
         0 0 10px #5aa7ff,
+        0 0 20px #3f8cff,
+        0 0 40px #2f6fff;
+}
+
+/* GATTO */
+img{
+    width:180px;
+    margin-bottom:20px;
+}
+
+/* BOTTONI */
+.buttons{
+    display:flex;
+    gap:20px;
+    position:relative;
+    margin-top:10px;
+}
+
+/* BOX NEON */
+.box{
+    background:white;
+    color:#0b2a55;
+    padding:15px 45px;
+    border-radius:12px;
+    font-size:1.3rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.2s;
+    box-shadow:
+        0 0 8px #7db7ff,
+        0 0 15px #5aa7ff;
+}
+
+.box:hover{
+    transform:scale(1.08);
+}
+
+/* NO controllato */
+#no{
+    position:absolute;
+    left:55%;
+    top:55%;
+}
+
+/* STELLE */
+.star{
+    position:absolute;
+    background:yellow;
+    border-radius:50%;
+    animation:twinkle 3s infinite;
+    box-shadow:0 0 6px yellow;
+}
+
+@keyframes twinkle{
+    0%,100%{opacity:0.3; transform:scale(1);}
+    50%{opacity:1; transform:scale(1.8);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+    <h1>ti va di uscire?</h1>
+
+    <!-- GATTO SUPPLICANTE (link stabile) -->
+    <img src="https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif" alt="gattino">
+
+    <div class="buttons">
+        <div class="box" onclick="yes()">si</div>
+        <div class="box" id="no">no</div>
+    </div>
+
+</div>
+
+<script>
+
+/* STELLE */
+for(let i=0;i<150;i++){
+    const star=document.createElement('div');
+    star.classList.add('star');
+
+    const size=Math.random()*3+1;
+
+    star.style.width=size+'px';
+    star.style.height=size+'px';
+
+    star.style.left=Math.random()*100+'%';
+    star.style.top=Math.random()*100+'%';
+
+    star.style.animationDelay=Math.random()*3+'s';
+
+    document.querySelector('.hero').appendChild(star);
+}
+
+/* SI */
+function yes(){
+    alert("💙 grazie 💙");
+}
+
+/* NO che NON esce mai dallo schermo */
+const noBtn = document.getElementById("no");
+
+noBtn.addEventListener("mouseenter", function(){
+
+    const padding = 100;
+
+    const maxX = window.innerWidth - padding;
+    const maxY = window.innerHeight - padding;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+</script>
+
+</body>
+</html>        0 0 10px #5aa7ff,
         0 0 20px #3f8cff,
         0 0 40px #2f6fff;
 }
