@@ -20,17 +20,16 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    position:relative;
+    flex-direction:column;
+    color:white;
 }
 
-/* CONTENUTO CENTRATO */
+/* CENTRO */
 .container{
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
     text-align:center;
-    color:white;
 }
 
 /* TESTO */
@@ -47,40 +46,41 @@ img{
     margin-bottom:20px;
 }
 
-/* BOTTONI */
+/* BOTTONI PERFETTAMENTE ALLINEATI */
 .buttons{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+    align-items:center;
+    justify-items:center;
+    margin-top:10px;
     position:relative;
     width:260px;
-    height:70px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
 }
 
 /* BOX */
 .box{
     background:white;
     color:#0b2a55;
-    padding:15px 40px;
+    padding:15px 35px;
     border-radius:12px;
     font-size:1.3rem;
     font-weight:bold;
     cursor:pointer;
     box-shadow:0 0 10px #5aa7ff;
     user-select:none;
+    width:100%;
+    text-align:center;
 }
 
-/* SI stabile */
+/* SI normale */
 #si{
     position:relative;
 }
 
-/* NO libero ma indipendente dal layout */
+/* NO fuori dal flow ma non rompe layout */
 #no{
     position:fixed;
-    left:calc(50% + 90px);
-    top:calc(50% + 120px);
 }
 
 /* STELLE */
@@ -132,7 +132,7 @@ function yes(){
     alert("💙 grazie 💙");
 }
 
-/* NO che scappa senza spostare layout */
+/* NO che scappa senza rompere layout */
 const noBtn = document.getElementById("no");
 
 document.addEventListener("mousemove", function(e){
@@ -155,7 +155,6 @@ document.addEventListener("mousemove", function(e){
         noBtn.style.top = Math.random()*maxY + "px";
     }
 });
-
 </script>
 
 </body>
