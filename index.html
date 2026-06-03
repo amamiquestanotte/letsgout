@@ -12,7 +12,6 @@ body{
     font-family: Georgia, serif;
 }
 
-/* SFONDO */
 .hero{
     width:100vw;
     height:100vh;
@@ -22,17 +21,14 @@ body{
     align-items:center;
 }
 
-/* CONTENUTO CENTRALE */
 .container{
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
     text-align:center;
     color:white;
 }
 
-/* TESTO */
 h1{
     font-size:3rem;
     margin-bottom:20px;
@@ -40,20 +36,18 @@ h1{
     text-shadow:0 0 10px #5aa7ff;
 }
 
-/* GATTO */
 img{
     width:170px;
     margin-bottom:20px;
 }
 
-/* BOTTONI: LA SOLUZIONE DEFINITIVA */
+/* BOTTONI PERFETTI */
 .buttons{
     display:flex;
     flex-direction:row;
+    gap:20px;
     justify-content:center;
     align-items:center;
-    gap:20px;
-    position:relative;
 }
 
 /* BOX */
@@ -68,16 +62,16 @@ img{
     box-shadow:0 0 10px #5aa7ff;
     user-select:none;
     transition:0.2s;
-    position:relative;
 }
 
 .box:hover{
     transform:scale(1.05);
 }
 
-/* NO NON deve mai uscire dal flow */
+/* NO NON esce dal layout */
 #no{
     position:relative;
+    transition: transform 0.2s ease;
 }
 
 /* STELLE */
@@ -129,28 +123,28 @@ function yes(){
     alert("💙 grazie 💙");
 }
 
-/* NO CHE SCAPPA SENZA ROMPERE LAYOUT */
+/* NO che scappa SOLO quando sei davvero vicino */
 const noBtn = document.getElementById("no");
 
 document.addEventListener("mousemove", function(e){
 
     const rect = noBtn.getBoundingClientRect();
 
-    const dist = Math.hypot(
-        e.clientX - (rect.left + rect.width/2),
-        e.clientY - (rect.top + rect.height/2)
-    );
+    const dx = e.clientX - (rect.left + rect.width/2);
+    const dy = e.clientY - (rect.top + rect.height/2);
 
-    if(dist < 120){
+    const distance = Math.sqrt(dx*dx + dy*dy);
 
-        const padding = 120;
+    // trigger SOLO se molto vicino
+    if(distance < 80){
 
-        const maxX = window.innerWidth - padding;
-        const maxY = window.innerHeight - padding;
+        const maxX = window.innerWidth - 200;
+        const maxY = window.innerHeight - 200;
 
-        noBtn.style.position = "fixed";
-        noBtn.style.left = Math.random()*maxX + "px";
-        noBtn.style.top = Math.random()*maxY + "px";
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        noBtn.style.transform = `translate(${x - rect.left}px, ${y - rect.top}px)`;
     }
 });
 </script>
