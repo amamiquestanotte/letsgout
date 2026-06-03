@@ -20,10 +20,16 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
-    text-align:center;
     color:white;
-    position:relative;
+}
+
+/* BLOCCO CENTRALE */
+.container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
 }
 
 /* TESTO */
@@ -31,7 +37,7 @@ h1{
     font-size:3.2rem;
     margin-bottom:20px;
     text-transform: lowercase;
-    text-shadow: 0 0 10px #5aa7ff;
+    text-shadow:0 0 10px #5aa7ff;
 }
 
 /* GATTO */
@@ -40,12 +46,13 @@ img{
     margin-bottom:20px;
 }
 
-/* BOTTONI (SEMPRE AFFIANCATI) */
+/* BOTTONI CENTRATI E AFFIANCATI */
 .buttons{
     display:flex;
     gap:20px;
-    align-items:center;
     justify-content:center;
+    align-items:center;
+    margin-top:10px;
 }
 
 /* BOX */
@@ -58,6 +65,7 @@ img{
     font-weight:bold;
     cursor:pointer;
     box-shadow:0 0 10px #5aa7ff;
+    user-select:none;
 }
 
 /* NO che scappa */
@@ -75,12 +83,6 @@ img{
     background:yellow;
     border-radius:50%;
     box-shadow:0 0 6px yellow;
-    animation: twinkle 3s infinite;
-}
-
-@keyframes twinkle{
-    0%,100%{opacity:0.3;}
-    50%{opacity:1;}
 }
 </style>
 </head>
@@ -89,13 +91,17 @@ img{
 
 <div class="hero">
 
-    <h1>ti va di uscire?</h1>
+    <div class="container">
 
-    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTQwN2Fmc2pxeDNpcjNsM2Z3bGJuZ20yMzI4bXAxNXpna2d2MHJoYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ncn7y0xz7ZfAxEcEml/giphy.gif">
+        <h1>ti va di uscire?</h1>
 
-    <div class="buttons">
-        <div class="box" onclick="yes()">si</div>
-        <div class="box" id="no">no</div>
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTQwN2Fmc2pxeDNpcjNsM2Z3bGJuZ20yMzI4bXAxNXpna2d2MHJoYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ncn7y0xz7ZfAxEcEml/giphy.gif">
+
+        <div class="buttons">
+            <div class="box" onclick="yes()">si</div>
+            <div class="box" id="no">no</div>
+        </div>
+
     </div>
 
 </div>
@@ -130,7 +136,7 @@ document.addEventListener("mousemove", function(e){
         e.clientY - (rect.top + rect.height/2)
     );
 
-    if(dist < 100){
+    if(dist < 120){
 
         const maxX = window.innerWidth - 120;
         const maxY = window.innerHeight - 60;
