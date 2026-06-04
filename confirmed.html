@@ -26,12 +26,10 @@ body{
     gap:20px;
 }
 
-/* GIF */
 .gif{
     width:200px;
 }
 
-/* CARD */
 .card{
     background:white;
     color:#0b2a55;
@@ -42,23 +40,39 @@ body{
     text-align:left;
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:10px;
 }
 
-/* TITOLO */
 .title{
-    font-size:1.4rem;
+    font-size:1.3rem;
     font-weight:bold;
     text-align:center;
     margin-bottom:10px;
 }
 
-/* RIGHE */
 .row{
     font-size:1.1rem;
 }
 
-/* STELLINE */
+/* bottone */
+.btn{
+    margin-top:15px;
+    padding:14px 20px;
+    border:none;
+    border-radius:12px;
+    background:#0b2a55;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 10px #5aa7ff;
+    transition:0.2s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* stelle */
 .star{
     position:absolute;
     width:2px;
@@ -78,11 +92,13 @@ body{
 
 <div class="card">
 
-<div class="title">appuntamento confermato</div>
+<div class="title">appuntamento confermato 💙</div>
 
 <div class="row" id="date"></div>
 <div class="row" id="time"></div>
 <div class="row" id="where"></div>
+
+<button class="btn" onclick="sendTelegram()">invia conferma 💌</button>
 
 </div>
 
@@ -99,12 +115,12 @@ for(let i=0;i<150;i++){
     document.querySelector('.hero').appendChild(star);
 }
 
-/* DATI */
+/* dati */
 const dateRaw = localStorage.getItem("date");
 const time = localStorage.getItem("time");
 const where = JSON.parse(localStorage.getItem("where") || "[]");
 
-/* FORMATO DATA ITALIANO */
+/* format data */
 function formatDate(dateStr){
     if(!dateStr) return "non selezionata";
 
@@ -116,7 +132,7 @@ function formatDate(dateStr){
     });
 }
 
-/* OUTPUT */
+/* mostra dati */
 document.getElementById("date").innerText =
     "📅 " + formatDate(dateRaw);
 
@@ -125,6 +141,28 @@ document.getElementById("time").innerText =
 
 document.getElementById("where").innerText =
     "📌 " + (where.length ? where.join(", ") : "non selezionato");
+
+
+/* TELEGRAM */
+function sendTelegram(){
+
+    const message =
+`💙 appuntamento confermato
+
+📅 ${formatDate(dateRaw)}
+🕑 ${time}
+📌 ${where.join(", ")}`;
+
+    const token = "8969842727:AAFZwkxtAT-LqhiloqrsxRKTwJfSsBkc0GU";
+    const chat_id = "36109387";
+
+    const url =
+`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}`;
+
+    fetch(url)
+        .then(() => alert("inviato 💙"))
+        .catch(() => alert("errore"));
+}
 
 </script>
 
