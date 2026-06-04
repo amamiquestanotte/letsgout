@@ -30,6 +30,7 @@ body{
     width:200px;
 }
 
+/* CARD RIEPILOGO */
 .card{
     background:white;
     color:#0b2a55;
@@ -54,15 +55,15 @@ body{
     font-size:1.1rem;
 }
 
-/* bottone */
+/* 🔥 BOTTONE ESTERNO */
 .btn{
-    margin-top:15px;
-    padding:14px 20px;
+    padding:16px 26px;
     border:none;
     border-radius:12px;
     background:#0b2a55;
     color:white;
     font-weight:bold;
+    font-size:1.2rem;
     cursor:pointer;
     box-shadow:0 0 10px #5aa7ff;
     transition:0.2s;
@@ -72,7 +73,7 @@ body{
     transform:scale(1.05);
 }
 
-/* stelle */
+/* STELLINE */
 .star{
     position:absolute;
     width:2px;
@@ -88,7 +89,7 @@ body{
 
 <div class="hero">
 
-<img class="gif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmJlZXNoNWlzNWJvdnN3YWZhN3FrNnl2bjI2ZmxzbWlkOGZvbzNmYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l2Sq5GffrCyUMEXjW/giphy.gif">
+<img class="gif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmJlZXNoNWlzNWJvdnN3YWZhN3FrNnl2bjI2ZmxzbWlkOGZvbzNmYiZlcD12MV9pbnRlcm5hbGZfYnlfaWQmY3Q9Zw/l2Sq5GffrCyUMEXjW/giphy.gif">
 
 <div class="card">
 
@@ -98,9 +99,12 @@ body{
 <div class="row" id="time"></div>
 <div class="row" id="where"></div>
 
-<button class="btn" onclick="sendTelegram()">invia conferma 💌</button>
-
 </div>
+
+<!-- BOTTONE FUORI DALLA CARD -->
+<button class="btn" onclick="sendTelegram()">
+invia conferma 💌
+</button>
 
 </div>
 
@@ -120,7 +124,7 @@ const dateRaw = localStorage.getItem("date");
 const time = localStorage.getItem("time");
 const where = JSON.parse(localStorage.getItem("where") || "[]");
 
-/* format data */
+/* formato data */
 function formatDate(dateStr){
     if(!dateStr) return "non selezionata";
 
@@ -132,7 +136,7 @@ function formatDate(dateStr){
     });
 }
 
-/* mostra dati */
+/* stampa dati */
 document.getElementById("date").innerText =
     "📅 " + formatDate(dateRaw);
 
@@ -153,14 +157,14 @@ function sendTelegram(){
 🕑 ${time}
 📌 ${where.join(", ")}`;
 
-    const token = "8969842727:AAFZwkxtAT-LqhiloqrsxRKTwJfSsBkc0GU";
-    const chat_id = "36109387";
+    const token = "INCOLLA_TOKEN";
+    const chat_id = "INCOLLA_CHAT_ID";
 
     const url =
 `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}`;
 
     fetch(url)
-        .then(() => alert("inviato 💙"))
+        .then(() => alert("conferma inviata"))
         .catch(() => alert("errore"));
 }
 
