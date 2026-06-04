@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>quando sei libero?</title>
 
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    font-family: Georgia, serif;
+}
+
+.hero{
+    width:100vw;
+    height:100vh;
+    background: linear-gradient(to bottom, #020b1a, #061a3a, #0b2a55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:white;
+    position:relative;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:30px;
+    text-transform:lowercase;
+    text-shadow:
+        0 0 5px #7db7ff,
+        0 0 10px #5aa7ff,
+        0 0 20px #3f8cff;
+}
+
+.card{
+    background:white;
+    border:3px solid #0b2a55;
+    border-radius:20px;
+    padding:30px;
+    width:320px;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    color:#0b2a55;
+    z-index:2;
+}
+
+label{
+    font-weight:bold;
+    text-align:left;
+    font-size:1rem;
+}
+
+input{
+    padding:10px;
+    border:2px solid #0b2a55;
+    border-radius:10px;
+    font-size:1rem;
+    font-family:inherit;
+}
+
+button{
+    margin-top:10px;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:#0b2a55;
+    color:white;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:yellow;
+    border-radius:50%;
+    box-shadow:0 0 6px yellow;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+    <h1>quando sei libero?</h1>
+
+    <div class="card">
+
+        <label for="date">scegli una data</label>
+        <input type="date" id="date">
+
+        <label for="time">scegli un orario</label>
+        <input type="time" id="time">
+
+        <button onclick="conferma()">conferma</button>
+
+    </div>
+
+</div>
+
+<script>
+
+/* STELLE */
+for(let i=0;i<150;i++){
+    const star=document.createElement('div');
+    star.classList.add('star');
+
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
+
+    document.querySelector('.hero').appendChild(star);
+}
+
+/* CONFERMA */
+function conferma(){
+
+    const data = document.getElementById("date").value;
+    const ora = document.getElementById("time").value;
+
+    if(!data || !ora){
+        alert("scegli una data e un orario 💙");
+        return;
+    }
+
+    alert("perfetto! 💙");
+}
+</script>
+
+</body>
+</html>
