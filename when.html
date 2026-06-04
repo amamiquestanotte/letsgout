@@ -21,6 +21,7 @@ body{
     align-items:center;
     flex-direction:column;
     color:white;
+    position:relative;
 }
 
 h1{
@@ -40,6 +41,7 @@ h1{
     flex-direction:column;
     gap:15px;
     text-align:center;
+    box-sizing:border-box;
 }
 
 input{
@@ -53,11 +55,10 @@ button{
     padding:12px;
     border:none;
     border-radius:12px;
-    background:white;
-    color:#0b2a55;
+    background:#0b2a55;
+    color:white;
     font-weight:bold;
     cursor:pointer;
-    box-shadow:0 0 10px #5aa7ff;
 }
 
 .star{
@@ -101,9 +102,10 @@ function finish(){
     localStorage.setItem("date",date);
     localStorage.setItem("time",time);
 
-    alert("perfetto 💙");
+    window.location.href="approved.html";
 }
 
+/* stelle */
 for(let i=0;i<150;i++){
     const star=document.createElement('div');
     star.classList.add('star');
