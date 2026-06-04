@@ -34,6 +34,7 @@ h1{
         0 0 20px #3f8cff;
 }
 
+/* CARD */
 .card{
     background:white;
     border:3px solid #0b2a55;
@@ -61,21 +62,23 @@ input{
     font-family:inherit;
 }
 
-button{
-    margin-top:10px;
-    padding:12px;
-    border:none;
+/* BOTTONE FUORI DALLA CARD */
+.confirm-btn{
+    margin-top:25px;
+    padding:12px 28px;
     border-radius:12px;
-    background:#0b2a55;
-    color:white;
-    font-size:1rem;
+    border:none;
+    background:white;
+    color:#0b2a55;
+    font-size:1.1rem;
     font-weight:bold;
     cursor:pointer;
+    box-shadow:0 0 10px #5aa7ff;
     transition:0.2s;
 }
 
-button:hover{
-    transform:scale(1.03);
+.confirm-btn:hover{
+    transform:scale(1.05);
 }
 </style>
 </head>
@@ -94,9 +97,9 @@ button:hover{
         <label for="time">scegli un orario</label>
         <input type="time" id="time">
 
-        <button onclick="conferma()">conferma</button>
-
     </div>
+
+    <button class="confirm-btn" onclick="conferma()">conferma</button>
 
 </div>
 
