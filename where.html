@@ -31,11 +31,14 @@ h1{
     text-shadow:0 0 10px #5aa7ff;
 }
 
+/* CARD CON SFONDO SICURO SOPRA STELLE */
 .card{
     background:white;
     border-radius:20px;
     padding:25px;
     width:360px;
+    position:relative;
+    z-index:2;
 }
 
 .grid{
@@ -61,18 +64,18 @@ h1{
     color:#0b2a55;
 }
 
-/* 🔥 BOTTONE PIÙ GRANDE */
+/* 🔥 SOLO BOTTONE PIÙ GRANDE */
 .confirm-btn{
-    margin-top:28px;
-    padding:16px 36px;
+    margin-top:25px;
+    padding:16px 34px;
     border:none;
-    border-radius:14px;
+    border-radius:12px;
     background:white;
     color:#0b2a55;
     font-weight:bold;
     font-size:1.2rem;
     cursor:pointer;
-    box-shadow:0 0 12px #5aa7ff;
+    box-shadow:0 0 10px #5aa7ff;
     transition:0.2s;
 }
 
@@ -80,7 +83,7 @@ h1{
     transform:scale(1.05);
 }
 
-/* stelline */
+/* STELLINE */
 .star{
     position:absolute;
     width:2px;
@@ -128,23 +131,22 @@ h1{
 
 <script>
 
-/* stelline */
 for(let i=0;i<150;i++){
     const star=document.createElement('div');
     star.classList.add('star');
+
     star.style.left=Math.random()*100+"%";
     star.style.top=Math.random()*100+"%";
+
     document.querySelector('.hero').appendChild(star);
 }
 
-/* selezione */
 document.querySelectorAll(".item").forEach(el=>{
     el.addEventListener("click",()=>{
         el.classList.toggle("selected");
     });
 });
 
-/* conferma */
 function goNext(){
 
     const selected = [...document.querySelectorAll(".item.selected")]
