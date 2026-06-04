@@ -21,6 +21,7 @@ body{
     align-items:center;
     flex-direction:column;
     color:white;
+    position:relative;
 }
 
 h1{
@@ -63,6 +64,15 @@ button{
     font-weight:bold;
     cursor:pointer;
 }
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:yellow;
+    border-radius:50%;
+    box-shadow:0 0 6px yellow;
+}
 </style>
 </head>
 
@@ -87,6 +97,17 @@ button{
 </div>
 
 <script>
+
+/* STELLINE */
+for(let i=0;i<150;i++){
+    const star=document.createElement('div');
+    star.classList.add('star');
+
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
+
+    document.querySelector('.hero').appendChild(star);
+}
 
 function conferma(){
 
