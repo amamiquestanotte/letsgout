@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>approved</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Georgia, serif;
+    overflow:hidden;
+}
+
+.hero{
+    width:100vw;
+    height:100vh;
+    background: linear-gradient(to bottom, #020b1a, #061a3a, #0b2a55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:white;
+    text-align:center;
+    position:relative;
+}
+
+.card{
+    background:white;
+    color:#0b2a55;
+    padding:30px;
+    border-radius:20px;
+    width:360px;
+    box-sizing:border-box;
+}
+
+h1{
+    font-size:2.5rem;
+    margin-bottom:20px;
+    text-shadow:0 0 10px #5aa7ff;
+}
+
+.item{
+    margin:10px 0;
+    font-size:1.2rem;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:yellow;
+    border-radius:50%;
+    box-shadow:0 0 6px yellow;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+<h1>approved 💙</h1>
+
+<div class="card">
+
+<div class="item" id="where"></div>
+<div class="item" id="when"></div>
+
+</div>
+
+</div>
+
+<script>
+
+/* stelle */
+for(let i=0;i<150;i++){
+    const star=document.createElement('div');
+    star.classList.add('star');
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
+    document.querySelector('.hero').appendChild(star);
+}
+
+/* recupero dati */
+const where = JSON.parse(localStorage.getItem("where") || "[]");
+const date = localStorage.getItem("date");
+const time = localStorage.getItem("time");
+
+document.getElementById("where").innerText =
+    "dove: " + (where.length ? where.join(", ") : "non scelto");
+
+document.getElementById("when").innerText =
+    "quando: " + (date || "non scelto") + " alle " + (time || "non scelto");
+
+</script>
+
+</body>
+</html>
