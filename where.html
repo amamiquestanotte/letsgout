@@ -61,16 +61,18 @@ h1{
     color:#0b2a55;
 }
 
+/* 🔥 BOTTONE PIÙ GRANDE */
 .confirm-btn{
-    margin-top:25px;
-    padding:12px 28px;
+    margin-top:28px;
+    padding:16px 36px;
     border:none;
-    border-radius:12px;
+    border-radius:14px;
     background:white;
     color:#0b2a55;
     font-weight:bold;
+    font-size:1.2rem;
     cursor:pointer;
-    box-shadow:0 0 10px #5aa7ff;
+    box-shadow:0 0 12px #5aa7ff;
     transition:0.2s;
 }
 
@@ -135,14 +137,14 @@ for(let i=0;i<150;i++){
     document.querySelector('.hero').appendChild(star);
 }
 
-/* selezione emoji */
+/* selezione */
 document.querySelectorAll(".item").forEach(el=>{
     el.addEventListener("click",()=>{
         el.classList.toggle("selected");
     });
 });
 
-/* ❗ FIX IMPORTANTE */
+/* conferma */
 function goNext(){
 
     const selected = [...document.querySelectorAll(".item.selected")]
@@ -150,7 +152,6 @@ function goNext(){
 
     localStorage.setItem("where", JSON.stringify(selected));
 
-    // 👉 ORA VA A WHEN (non alert!)
     window.location.href = "when.html";
 }
 
