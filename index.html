@@ -29,7 +29,6 @@ body{
     color:white;
 }
 
-/* TESTO */
 h1{
     font-size:3rem;
     margin-bottom:20px;
@@ -37,23 +36,19 @@ h1{
     text-shadow:0 0 10px #5aa7ff;
 }
 
-/* GIF */
 img{
     width:170px;
     margin-bottom:20px;
 }
 
-/* CONTENITORE BOTTONI PERFETTAMENTE CENTRATO */
+/* BOTTONI CENTRATI */
 .buttons{
     position:relative;
     width:220px;
     height:60px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
 }
 
-/* BOX BASE */
+/* BOX */
 .box{
     position:absolute;
     background:white;
@@ -72,14 +67,14 @@ img{
     transform:scale(1.05);
 }
 
-/* SI perfettamente centrato inizialmente */
+/* SI centrato */
 #si{
     left:50%;
     top:50%;
     transform:translate(-110%, -50%);
 }
 
-/* NO perfettamente centrato inizialmente */
+/* NO centrato */
 #no{
     left:50%;
     top:50%;
@@ -130,9 +125,9 @@ for(let i=0;i<150;i++){
     document.querySelector('.hero').appendChild(star);
 }
 
-/* SI */
+/* SI → ORA VA A WHERE */
 function yes(){
-    window.location.href = "when.html";
+    window.location.href = "where.html";
 }
 
 /* NO CHE SCAPPA */
