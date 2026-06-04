@@ -41,14 +41,14 @@ img{
     margin-bottom:20px;
 }
 
-/* BOTTONI */
+/* CENTRATURA PERFETTA */
 .buttons{
     display:flex;
-    flex-direction:row;
-    gap:20px;
     justify-content:center;
     align-items:center;
+    gap:20px;
     position:relative;
+    width:100%;
 }
 
 /* BOX */
@@ -69,17 +69,9 @@ img{
     transform:scale(1.05);
 }
 
-/* SI sempre fisso */
-#si{
-    position:relative;
-    z-index:2;
-}
-
-/* NO fuori flusso ma indipendente */
+/* NO NON influisce sul layout iniziale */
 #no{
-    position:absolute;
-    left:120px;
-    top:0;
+    position:relative;
 }
 
 /* STELLE */
@@ -105,7 +97,7 @@ img{
         <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTQwN2Fmc2pxeDNpcjNsM2Z3bGJuZ20yMzI4bXAxNXpna2d2MHJoYiZlcD12MV9pbnRlcm5hbGZfYnlfaWQmY3Q9Zw/Ncn7y0xz7ZfAxEcEml/giphy.gif">
 
         <div class="buttons">
-            <div class="box" id="si" onclick="yes()">si</div>
+            <div class="box" onclick="yes()">si</div>
             <div class="box" id="no">no</div>
         </div>
 
@@ -131,18 +123,15 @@ function yes(){
     window.location.href = "when.html";
 }
 
-/* NO CHE SCAPPA */
+/* NO che scappa SENZA rompere il layout */
 const noBtn = document.getElementById("no");
 
 noBtn.addEventListener("mouseenter", function () {
 
     const padding = 120;
 
-    const maxX = window.innerWidth - padding;
-    const maxY = window.innerHeight - padding;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    const x = Math.random() * (window.innerWidth - padding);
+    const y = Math.random() * (window.innerHeight - padding);
 
     noBtn.style.position = "fixed";
     noBtn.style.left = x + "px";
