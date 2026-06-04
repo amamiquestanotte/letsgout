@@ -21,14 +21,17 @@ body{
     align-items:center;
 }
 
+/* CENTRATURA PERFETTA BLOCCATA */
 .container{
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content:center;
     text-align:center;
     color:white;
 }
 
+/* TESTO */
 h1{
     font-size:3rem;
     margin-bottom:20px;
@@ -36,23 +39,22 @@ h1{
     text-shadow:0 0 10px #5aa7ff;
 }
 
+/* GIF */
 img{
     width:170px;
     margin-bottom:20px;
 }
 
-/* CENTRATURA PERFETTA */
+/* AREA BOTTONI: BLOCCATA */
 .buttons{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
     position:relative;
-    width:100%;
+    width:250px;
+    height:60px;
 }
 
-/* BOX */
+/* BOX BASE */
 .box{
+    position:absolute;
     background:white;
     color:#0b2a55;
     padding:12px 28px;
@@ -69,9 +71,16 @@ img{
     transform:scale(1.05);
 }
 
-/* NO NON influisce sul layout iniziale */
+/* SI fissato */
+#si{
+    left:0;
+    top:0;
+}
+
+/* NO inizialmente a destra */
 #no{
-    position:relative;
+    left:120px;
+    top:0;
 }
 
 /* STELLE */
@@ -97,7 +106,7 @@ img{
         <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTQwN2Fmc2pxeDNpcjNsM2Z3bGJuZ20yMzI4bXAxNXpna2d2MHJoYiZlcD12MV9pbnRlcm5hbGZfYnlfaWQmY3Q9Zw/Ncn7y0xz7ZfAxEcEml/giphy.gif">
 
         <div class="buttons">
-            <div class="box" onclick="yes()">si</div>
+            <div class="box" id="si" onclick="yes()">si</div>
             <div class="box" id="no">no</div>
         </div>
 
@@ -123,7 +132,7 @@ function yes(){
     window.location.href = "when.html";
 }
 
-/* NO che scappa SENZA rompere il layout */
+/* NO CHE SCAPPA SENZA TOCCARE IL LAYOUT */
 const noBtn = document.getElementById("no");
 
 noBtn.addEventListener("mouseenter", function () {
