@@ -107,6 +107,9 @@ img{
 
 <script>
 
+/* SEGNA CHE IL FLUSSO È ATTIVO */
+sessionStorage.setItem("flow", "true");
+
 /* STELLE */
 for(let i=0;i<150;i++){
     const star=document.createElement('div');
@@ -135,7 +138,6 @@ document.addEventListener("mousemove", function(e){
 
     const distance = Math.sqrt(dx*dx + dy*dy);
 
-    // trigger SOLO se molto vicino
     if(distance < 80){
 
         const maxX = window.innerWidth - 200;
