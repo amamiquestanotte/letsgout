@@ -21,12 +21,10 @@ body{
     align-items:center;
 }
 
-/* CENTRATURA PERFETTA BLOCCATA */
 .container{
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
     text-align:center;
     color:white;
 }
@@ -45,11 +43,14 @@ img{
     margin-bottom:20px;
 }
 
-/* AREA BOTTONI: BLOCCATA */
+/* CONTENITORE BOTTONI PERFETTAMENTE CENTRATO */
 .buttons{
     position:relative;
-    width:250px;
+    width:220px;
     height:60px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 /* BOX BASE */
@@ -71,16 +72,18 @@ img{
     transform:scale(1.05);
 }
 
-/* SI fissato */
+/* SI perfettamente centrato inizialmente */
 #si{
-    left:0;
-    top:0;
+    left:50%;
+    top:50%;
+    transform:translate(-110%, -50%);
 }
 
-/* NO inizialmente a destra */
+/* NO perfettamente centrato inizialmente */
 #no{
-    left:120px;
-    top:0;
+    left:50%;
+    top:50%;
+    transform:translate(10%, -50%);
 }
 
 /* STELLE */
@@ -132,7 +135,7 @@ function yes(){
     window.location.href = "when.html";
 }
 
-/* NO CHE SCAPPA SENZA TOCCARE IL LAYOUT */
+/* NO CHE SCAPPA */
 const noBtn = document.getElementById("no");
 
 noBtn.addEventListener("mouseenter", function () {
@@ -145,6 +148,7 @@ noBtn.addEventListener("mouseenter", function () {
     noBtn.style.position = "fixed";
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
+    noBtn.style.transform = "none";
 });
 </script>
 
