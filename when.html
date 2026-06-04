@@ -34,7 +34,6 @@ h1{
         0 0 20px #3f8cff;
 }
 
-/* CARD */
 .card{
     background:white;
     border:3px solid #0b2a55;
@@ -62,7 +61,7 @@ input{
     font-family:inherit;
 }
 
-/* BOTTONE FUORI DALLA CARD */
+/* bottone fuori dal riquadro */
 .confirm-btn{
     margin-top:25px;
     padding:12px 28px;
@@ -105,21 +104,22 @@ input{
 
 <script>
 
+/* BLOCCO SICUREZZA FLUSSO */
+sessionStorage.setItem("flow", "true");
+
 function conferma(){
 
     const data = document.getElementById("date").value;
     const ora = document.getElementById("time").value;
 
     if(!data || !ora){
-        alert("scegli una data e un orario");
+        alert("scegli una data e un orario 💙");
         return;
     }
 
-    // SALVATAGGIO
     localStorage.setItem("date", data);
     localStorage.setItem("time", ora);
 
-    // PASSA ALLA PAGINA SUCCESSIVA
     window.location.href = "where.html";
 }
 
