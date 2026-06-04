@@ -31,6 +31,7 @@ h1{
     text-shadow:0 0 10px #5aa7ff;
 }
 
+/* RIQUADRO EMOJI */
 .card{
     background:white;
     border-radius:20px;
@@ -53,11 +54,36 @@ h1{
     padding:18px;
     text-align:center;
     cursor:pointer;
+    user-select:none;
+    transition:0.2s;
+}
+
+.item:hover{
+    transform:scale(1.05);
 }
 
 .item.selected{
     background:#5aa7ff;
     color:#0b2a55;
+}
+
+/* BOTTONE ESTERNO (UGUALE A WHEN) */
+.confirm-btn{
+    margin-top:25px;
+    padding:12px 28px;
+    border-radius:12px;
+    border:none;
+    background:white;
+    color:#0b2a55;
+    font-size:1.1rem;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 10px #5aa7ff;
+    transition:0.2s;
+}
+
+.confirm-btn:hover{
+    transform:scale(1.05);
 }
 
 /* STELLINE */
@@ -102,6 +128,8 @@ h1{
 
 </div>
 
+<button class="confirm-btn" onclick="conferma()">conferma</button>
+
 </div>
 
 <script>
@@ -117,11 +145,23 @@ for(let i=0;i<150;i++){
     document.querySelector('.hero').appendChild(star);
 }
 
+/* SELEZIONE EMOJI */
 document.querySelectorAll(".item").forEach(el => {
     el.addEventListener("click", () => {
         el.classList.toggle("selected");
     });
 });
+
+/* CONFERMA */
+function conferma(){
+
+    const selected = [...document.querySelectorAll(".item.selected")]
+        .map(x => x.innerText);
+
+    localStorage.setItem("where", JSON.stringify(selected));
+
+    alert("perfetto 💙");
+}
 
 </script>
 
