@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>approved</title>
+<title>confirmed</title>
 
 <style>
 body{
@@ -23,28 +23,42 @@ body{
     color:white;
     text-align:center;
     position:relative;
+    gap:20px;
 }
 
+/* GIF */
+.gif{
+    width:200px;
+}
+
+/* CARD */
 .card{
     background:white;
     color:#0b2a55;
     padding:30px;
     border-radius:20px;
-    width:360px;
+    width:380px;
     box-sizing:border-box;
+    text-align:left;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
 }
 
-h1{
-    font-size:2.5rem;
-    margin-bottom:20px;
-    text-shadow:0 0 10px #5aa7ff;
+/* TITOLO */
+.title{
+    font-size:1.4rem;
+    font-weight:bold;
+    text-align:center;
+    margin-bottom:10px;
 }
 
-.item{
-    margin:10px 0;
-    font-size:1.2rem;
+/* RIGHE */
+.row{
+    font-size:1.1rem;
 }
 
+/* STELLINE */
 .star{
     position:absolute;
     width:2px;
@@ -60,12 +74,15 @@ h1{
 
 <div class="hero">
 
-<h1>approved 💙</h1>
+<img class="gif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmJlZXNoNWlzNWJvdnN3YWZhN3FrNnl2bjI2ZmxzbWlkOGZvbzNmYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l2Sq5GffrCyUMEXjW/giphy.gif">
 
 <div class="card">
 
-<div class="item" id="where"></div>
-<div class="item" id="when"></div>
+<div class="title">appuntamento confermato 💙</div>
+
+<div class="row" id="date"></div>
+<div class="row" id="time"></div>
+<div class="row" id="where"></div>
 
 </div>
 
@@ -82,16 +99,32 @@ for(let i=0;i<150;i++){
     document.querySelector('.hero').appendChild(star);
 }
 
-/* recupero dati */
-const where = JSON.parse(localStorage.getItem("where") || "[]");
-const date = localStorage.getItem("date");
+/* DATI */
+const dateRaw = localStorage.getItem("date");
 const time = localStorage.getItem("time");
+const where = JSON.parse(localStorage.getItem("where") || "[]");
+
+/* FORMATO DATA ITALIANO */
+function formatDate(dateStr){
+    if(!dateStr) return "non selezionata";
+
+    const d = new Date(dateStr);
+    return d.toLocaleDateString("it-IT", {
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+    });
+}
+
+/* OUTPUT */
+document.getElementById("date").innerText =
+    "📅 " + formatDate(dateRaw);
+
+document.getElementById("time").innerText =
+    "🕑 " + (time || "non selezionato");
 
 document.getElementById("where").innerText =
-    "dove: " + (where.length ? where.join(", ") : "non scelto");
-
-document.getElementById("when").innerText =
-    "quando: " + (date || "non scelto") + " alle " + (time || "non scelto");
+    "📌 " + (where.length ? where.join(", ") : "non selezionato");
 
 </script>
 
