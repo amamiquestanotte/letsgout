@@ -31,6 +31,7 @@ h1{
     text-shadow:0 0 10px #5aa7ff;
 }
 
+/* CARD */
 .card{
     background:white;
     border-radius:20px;
@@ -44,23 +45,40 @@ h1{
     box-sizing:border-box;
 }
 
+/* LABELS: blu + grassetto */
+.label{
+    font-weight:bold;
+    color:#0b2a55;
+    font-size:1rem;
+}
+
 input{
     padding:10px;
     border-radius:10px;
     border:2px solid #0b2a55;
+    font-family:inherit;
 }
 
-button{
-    margin-top:10px;
-    padding:12px;
+/* BOTTONE FUORI DAL RQUADRO */
+.confirm-btn{
+    margin-top:25px;
+    padding:16px 36px;
     border:none;
     border-radius:12px;
-    background:#0b2a55;
-    color:white;
+    background:white;
+    color:#0b2a55;
     font-weight:bold;
+    font-size:1.2rem;
     cursor:pointer;
+    box-shadow:0 0 10px #5aa7ff;
+    transition:0.2s;
 }
 
+.confirm-btn:hover{
+    transform:scale(1.05);
+}
+
+/* STELLINE */
 .star{
     position:absolute;
     width:2px;
@@ -80,38 +98,45 @@ button{
 
 <div class="card">
 
-<label>data</label>
-<input type="date" id="date">
+    <div class="label">data</div>
+    <input type="date" id="date">
 
-<label>ora</label>
-<input type="time" id="time">
-
-<button onclick="finish()">conferma</button>
+    <div class="label">ora</div>
+    <input type="time" id="time">
 
 </div>
+
+<button class="confirm-btn" onclick="finish()">conferma</button>
 
 </div>
 
 <script>
 
-function finish(){
-
-    const date=document.getElementById("date").value;
-    const time=document.getElementById("time").value;
-
-    localStorage.setItem("date",date);
-    localStorage.setItem("time",time);
-
-    window.location.href="approved.html";
-}
-
 /* stelle */
 for(let i=0;i<150;i++){
     const star=document.createElement('div');
     star.classList.add('star');
+
     star.style.left=Math.random()*100+"%";
     star.style.top=Math.random()*100+"%";
+
     document.querySelector('.hero').appendChild(star);
+}
+
+function finish(){
+
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+
+    if(!date || !time){
+        alert("scegli data e ora 💙");
+        return;
+    }
+
+    localStorage.setItem("date", date);
+    localStorage.setItem("time", time);
+
+    window.location.href = "confirmed.html";
 }
 
 </script>
