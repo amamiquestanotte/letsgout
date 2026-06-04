@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>cosa facciamo?</title>
+<title>where</title>
 
 <style>
 body{
     margin:0;
-    font-family: Georgia, serif;
     overflow:hidden;
+    font-family: Georgia, serif;
 }
 
 .hero{
@@ -21,54 +21,64 @@ body{
     align-items:center;
     flex-direction:column;
     color:white;
+    position:relative;
 }
 
 h1{
     font-size:3rem;
-    margin-bottom:25px;
+    margin-bottom:30px;
     text-transform:lowercase;
-    text-shadow:0 0 10px #5aa7ff;
+    text-shadow:
+        0 0 5px #7db7ff,
+        0 0 10px #5aa7ff,
+        0 0 20px #3f8cff;
 }
 
+/* CARD */
 .card{
     background:white;
+    border:3px solid #0b2a55;
     border-radius:20px;
-    padding:25px;
-    width:360px;
+    padding:30px;
+    width:320px;
+    box-sizing:border-box;
     display:flex;
     flex-direction:column;
-    align-items:center;
+    gap:18px;
+    color:#0b2a55;
+    text-align:center;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap:12px;
-    width:100%;
+label{
+    font-weight:bold;
+    font-size:1rem;
 }
 
-.item{
-    background:#0b2a55;
-    color:white;
-    font-size:1.8rem;
+input{
+    padding:10px;
+    border:2px solid #0b2a55;
+    border-radius:10px;
+    font-size:1rem;
+    font-family:inherit;
+}
+
+/* BOTTONE FUORI DALLA CARD */
+.confirm-btn{
+    margin-top:25px;
+    padding:12px 28px;
     border-radius:12px;
-    padding:18px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    border:none;
+    background:white;
+    color:#0b2a55;
+    font-size:1.1rem;
+    font-weight:bold;
     cursor:pointer;
-    user-select:none;
+    box-shadow:0 0 10px #5aa7ff;
     transition:0.2s;
 }
 
-.item:hover{
+.confirm-btn:hover{
     transform:scale(1.05);
-}
-
-.item.selected{
-    background:#5aa7ff;
-    color:#0b2a55;
-    font-weight:bold;
 }
 </style>
 </head>
@@ -77,51 +87,46 @@ h1{
 
 <div class="hero">
 
-<h1>where?</h1>
+    <h1>quando sei libero?</h1>
 
-<div class="card">
+    <div class="card">
 
-    <div class="grid">
+        <label for="date">scegli una data</label>
+        <input type="date" id="date">
 
-        <div class="item">🍕</div>
-        <div class="item">🍣</div>
-        <div class="item">🍔</div>
-        <div class="item">🥐☕️</div>
-        <div class="item">🥞🍳</div>
-        <div class="item">🍦</div>
-        <div class="item">⛳️</div>
-        <div class="item">🎥🍿</div>
-        <div class="item">🎢</div>
-        <div class="item">🏝️</div>
-        <div class="item">🏃🏻‍♀️‍➡️🏃🏻‍➡️</div>
-        <div class="item">🌕✨</div>
-        <div class="item">⛸️</div>
-        <div class="item">🎮</div>
-        <div class="item">🛍️</div>
+        <label for="time">scegli un orario</label>
+        <input type="time" id="time">
 
     </div>
 
-</div>
+    <button class="confirm-btn" onclick="conferma()">conferma</button>
 
 </div>
 
 <script>
 
-const items = document.querySelectorAll(".item");
+/* 🔒 BLOCCO ACCESSO DIRETTO / REFRESH */
+if (sessionStorage.getItem("flow") !== "true") {
+    window.location.href = "index.html";
+}
 
-items.forEach(el => {
-    el.addEventListener("click", () => {
+function conferma(){
 
-        // toggle selezione
-        el.classList.toggle("selected");
+    const data = document.getElementById("date").value;
+    const ora = document.getElementById("time").value;
 
-        // salva tutte le selezioni
-        const selected = [...document.querySelectorAll(".item.selected")]
-            .map(x => x.innerText);
+    if(!data || !ora){
+        alert("scegli una data e un orario");
+        return;
+    }
 
-        localStorage.setItem("where", JSON.stringify(selected));
-    });
-});
+    // SALVATAGGIO
+    localStorage.setItem("date", data);
+    localStorage.setItem("time", ora);
+
+    // PASSA ALLA PAGINA SUCCESSIVA
+    window.location.href = "where.html";
+}
 
 </script>
 
