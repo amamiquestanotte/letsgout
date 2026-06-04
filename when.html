@@ -106,6 +106,23 @@ button:hover{
         <input type="time" id="time">
 
         <button onclick="conferma()">conferma</button>
+        function conferma(){
+
+    const data = document.getElementById("date").value;
+    const ora = document.getElementById("time").value;
+
+    if(!data || !ora){
+        alert("scegli una data e un orario 💙");
+        return;
+    }
+
+    // SALVIAMO I DATI
+    localStorage.setItem("date", data);
+    localStorage.setItem("time", ora);
+
+    // PASSA ALLA PAGINA SUCCESSIVA
+    window.location.href = "where.html";
+}
 
     </div>
 
