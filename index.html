@@ -41,21 +41,39 @@ img{
     margin-bottom:20px;
 }
 
+/* BOTTONI */
 .buttons{
     display:flex;
+    flex-direction:row;
     gap:20px;
+    justify-content:center;
+    align-items:center;
 }
 
+/* BOX */
 .box{
     background:white;
     color:#0b2a55;
     padding:12px 28px;
     border-radius:12px;
+    font-size:1.1rem;
     font-weight:bold;
     cursor:pointer;
     box-shadow:0 0 10px #5aa7ff;
+    user-select:none;
+    transition:0.2s;
 }
 
+.box:hover{
+    transform:scale(1.05);
+}
+
+/* NO BUTTON */
+#no{
+    position:relative;
+}
+
+/* STELLE */
 .star{
     position:absolute;
     width:2px;
@@ -71,35 +89,56 @@ img{
 
 <div class="hero">
 
-<div class="container">
+    <div class="container">
 
-<h1>ti va di uscire?</h1>
+        <h1>ti va di uscire?</h1>
 
-<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTQwN2Fmc2pxeDNpcjNsM2Z3bGJuZ20yMzI4bXAxNXpna2d2MHJoYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ncn7y0xz7ZfAxEcEml/giphy.gif">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTQwN2Fmc2pxeDNpcjNsM2Z3bGJuZ20yMzI4bXAxNXpna2d2MHJoYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ncn7y0xz7ZfAxEcEml/giphy.gif">
 
-<div class="buttons">
-    <div class="box" onclick="yes()">si</div>
-    <div class="box">no</div>
-</div>
+        <div class="buttons">
+            <div class="box" onclick="yes()">si</div>
+            <div class="box" id="no">no</div>
+        </div>
 
-</div>
+    </div>
 
 </div>
 
 <script>
 
-function yes(){
-    window.location.href = "where.html";
-}
-
+/* STELLE */
 for(let i=0;i<150;i++){
     const star=document.createElement('div');
     star.classList.add('star');
+
     star.style.left=Math.random()*100+"%";
     star.style.top=Math.random()*100+"%";
+
     document.querySelector('.hero').appendChild(star);
 }
 
+/* YES */
+function yes(){
+    window.location.href = "when.html";
+}
+
+/* NO che scappa */
+const noBtn = document.getElementById("no");
+
+noBtn.addEventListener("mouseenter", function () {
+
+    const padding = 120;
+
+    const maxX = window.innerWidth - padding;
+    const maxY = window.innerHeight - padding;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
 </script>
 
 </body>
