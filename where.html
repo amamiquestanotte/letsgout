@@ -21,6 +21,7 @@ body{
     align-items:center;
     flex-direction:column;
     color:white;
+    position:relative;
 }
 
 h1{
@@ -51,6 +52,8 @@ h1{
     padding:18px;
     text-align:center;
     cursor:pointer;
+    user-select:none;
+    transition:0.2s;
 }
 
 .item.selected{
@@ -68,6 +71,21 @@ h1{
     font-weight:bold;
     cursor:pointer;
     box-shadow:0 0 10px #5aa7ff;
+    transition:0.2s;
+}
+
+.confirm-btn:hover{
+    transform:scale(1.05);
+}
+
+/* stelline */
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:yellow;
+    border-radius:50%;
+    box-shadow:0 0 6px yellow;
 }
 </style>
 </head>
@@ -108,18 +126,32 @@ h1{
 
 <script>
 
+/* stelline */
+for(let i=0;i<150;i++){
+    const star=document.createElement('div');
+    star.classList.add('star');
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
+    document.querySelector('.hero').appendChild(star);
+}
+
+/* selezione emoji */
 document.querySelectorAll(".item").forEach(el=>{
-    el.onclick=()=>el.classList.toggle("selected");
+    el.addEventListener("click",()=>{
+        el.classList.toggle("selected");
+    });
 });
 
+/* ❗ FIX IMPORTANTE */
 function goNext(){
 
-    const selected=[...document.querySelectorAll(".item.selected")]
-    .map(x=>x.innerText);
+    const selected = [...document.querySelectorAll(".item.selected")]
+        .map(x => x.innerText);
 
     localStorage.setItem("where", JSON.stringify(selected));
 
-    window.location.href="when.html";
+    // 👉 ORA VA A WHEN (non alert!)
+    window.location.href = "when.html";
 }
 
 </script>
