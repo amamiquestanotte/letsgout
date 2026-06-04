@@ -45,14 +45,12 @@ h1{
     flex-direction:column;
     gap:18px;
     color:#0b2a55;
-    z-index:2;
+    text-align:center;
 }
 
 label{
     font-weight:bold;
     font-size:1rem;
-    text-align:center;
-    display:block;
 }
 
 input{
@@ -79,15 +77,6 @@ button{
 button:hover{
     transform:scale(1.03);
 }
-
-.star{
-    position:absolute;
-    width:2px;
-    height:2px;
-    background:yellow;
-    border-radius:50%;
-    box-shadow:0 0 6px yellow;
-}
 </style>
 </head>
 
@@ -106,23 +95,6 @@ button:hover{
         <input type="time" id="time">
 
         <button onclick="conferma()">conferma</button>
-        function conferma(){
-
-    const data = document.getElementById("date").value;
-    const ora = document.getElementById("time").value;
-
-    if(!data || !ora){
-        alert("scegli una data e un orario 💙");
-        return;
-    }
-
-    // SALVIAMO I DATI
-    localStorage.setItem("date", data);
-    localStorage.setItem("time", ora);
-
-    // PASSA ALLA PAGINA SUCCESSIVA
-    window.location.href = "where.html";
-}
 
     </div>
 
@@ -130,18 +102,6 @@ button:hover{
 
 <script>
 
-/* STELLE */
-for(let i=0;i<150;i++){
-    const star=document.createElement('div');
-    star.classList.add('star');
-
-    star.style.left=Math.random()*100+"%";
-    star.style.top=Math.random()*100+"%";
-
-    document.querySelector('.hero').appendChild(star);
-}
-
-/* CONFERMA */
 function conferma(){
 
     const data = document.getElementById("date").value;
@@ -152,8 +112,14 @@ function conferma(){
         return;
     }
 
-    alert("perfetto! 💙");
+    // SALVATAGGIO
+    localStorage.setItem("date", data);
+    localStorage.setItem("time", ora);
+
+    // PASSA ALLA PAGINA SUCCESSIVA
+    window.location.href = "where.html";
 }
+
 </script>
 
 </body>
