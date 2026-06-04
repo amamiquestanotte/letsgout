@@ -21,17 +21,13 @@ body{
     align-items:center;
     flex-direction:column;
     color:white;
-    position:relative;
 }
 
 h1{
     font-size:3rem;
     margin-bottom:30px;
     text-transform:lowercase;
-    text-shadow:
-        0 0 5px #7db7ff,
-        0 0 10px #5aa7ff,
-        0 0 20px #3f8cff;
+    text-shadow:0 0 10px #5aa7ff;
 }
 
 .card{
@@ -40,7 +36,6 @@ h1{
     border-radius:20px;
     padding:30px;
     width:320px;
-    box-sizing:border-box;
     display:flex;
     flex-direction:column;
     gap:18px;
@@ -50,34 +45,23 @@ h1{
 
 label{
     font-weight:bold;
-    font-size:1rem;
 }
 
 input{
     padding:10px;
     border:2px solid #0b2a55;
     border-radius:10px;
-    font-size:1rem;
-    font-family:inherit;
 }
 
-/* bottone fuori dal riquadro */
-.confirm-btn{
-    margin-top:25px;
-    padding:12px 28px;
-    border-radius:12px;
+button{
+    margin-top:10px;
+    padding:12px;
     border:none;
-    background:white;
-    color:#0b2a55;
-    font-size:1.1rem;
+    border-radius:12px;
+    background:#0b2a55;
+    color:white;
     font-weight:bold;
     cursor:pointer;
-    box-shadow:0 0 10px #5aa7ff;
-    transition:0.2s;
-}
-
-.confirm-btn:hover{
-    transform:scale(1.05);
 }
 </style>
 </head>
@@ -86,26 +70,23 @@ input{
 
 <div class="hero">
 
-    <h1>quando sei libero?</h1>
+<h1>quando sei libero?</h1>
 
-    <div class="card">
+<div class="card">
 
-        <label for="date">scegli una data</label>
-        <input type="date" id="date">
+    <label>scegli una data</label>
+    <input type="date" id="date">
 
-        <label for="time">scegli un orario</label>
-        <input type="time" id="time">
+    <label>scegli un orario</label>
+    <input type="time" id="time">
 
-    </div>
+    <button onclick="conferma()">conferma</button>
 
-    <button class="confirm-btn" onclick="conferma()">conferma</button>
+</div>
 
 </div>
 
 <script>
-
-/* BLOCCO SICUREZZA FLUSSO */
-sessionStorage.setItem("flow", "true");
 
 function conferma(){
 
@@ -113,7 +94,7 @@ function conferma(){
     const ora = document.getElementById("time").value;
 
     if(!data || !ora){
-        alert("scegli una data e un orario 💙");
+        alert("scegli data e ora");
         return;
     }
 
