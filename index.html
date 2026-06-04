@@ -41,7 +41,6 @@ img{
     margin-bottom:20px;
 }
 
-/* BOTTONI PERFETTI */
 .buttons{
     display:flex;
     flex-direction:row;
@@ -50,7 +49,6 @@ img{
     align-items:center;
 }
 
-/* BOX */
 .box{
     background:white;
     color:#0b2a55;
@@ -68,13 +66,11 @@ img{
     transform:scale(1.05);
 }
 
-/* NO NON esce dal layout */
 #no{
     position:relative;
     transition: transform 0.2s ease;
 }
 
-/* STELLE */
 .star{
     position:absolute;
     width:2px;
@@ -107,10 +103,6 @@ img{
 
 <script>
 
-/* SEGNA CHE IL FLUSSO È ATTIVO */
-sessionStorage.setItem("flow", "true");
-
-/* STELLE */
 for(let i=0;i<150;i++){
     const star=document.createElement('div');
     star.classList.add('star');
@@ -121,12 +113,10 @@ for(let i=0;i<150;i++){
     document.querySelector('.hero').appendChild(star);
 }
 
-/* SI */
 function yes(){
     window.location.href = "when.html";
 }
 
-/* NO che scappa SOLO quando sei davvero vicino */
 const noBtn = document.getElementById("no");
 
 document.addEventListener("mousemove", function(e){
@@ -140,11 +130,8 @@ document.addEventListener("mousemove", function(e){
 
     if(distance < 80){
 
-        const maxX = window.innerWidth - 200;
-        const maxY = window.innerHeight - 200;
-
-        const x = Math.random() * maxX;
-        const y = Math.random() * maxY;
+        const x = Math.random() * (window.innerWidth - 200);
+        const y = Math.random() * (window.innerHeight - 200);
 
         noBtn.style.transform = `translate(${x - rect.left}px, ${y - rect.top}px)`;
     }
